@@ -1,5 +1,4 @@
 # bo-pos
-# bo-pos
 This repo contains various resources related to Tibetan part of speech.
 
 ## Resources
