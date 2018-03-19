@@ -26,7 +26,14 @@ This repo contains various resources related to Tibetan part of speech.
 * convert model into pybo matcher syntax
 
 ## To Do - Tagging
-* plug pybo to spacy through the init file
+* plug pybo to spacy with the init file
 * train spacy models
 * ...
+
+## To Do - Suggestions
+* train a 3-gram model on mgd
+* plug to pybo
+* plug bopho to pybo
+* ...
+
 
