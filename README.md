@@ -10,7 +10,6 @@ This repo contains various resources related to Tibetan part of speech.
 
 **MGD-dict.yml** -- [Monlam Grand Dictionary](http://monlamit.com/node/156) data normalized and re-organized into a structured .yml file. (107,064 types)
 
-
 ## To Do - prep
 * convert mgd POS to UD with attributes
     * find POS attributes in mgd definitions
