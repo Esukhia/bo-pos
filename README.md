@@ -11,3 +11,22 @@ This repo contains various resources related to Tibetan part of speech.
 **MGD-dict.yml** -- [Monlam Grand Dictionary](http://monlamit.com/node/156) data normalized and re-organized into a structured .yml file. (107,064 types)
 
 
+## To Do - prep
+* convert mgd POS to UD with attributes
+    * find POS attributes in mgd definitions
+    * extract tokens with less than 5 syllables
+    * extract POS + attributes when available
+    * convert mgd pos to UD
+    * give priority to tags from ACTib-one-tag when available
+* revise the mapping of SOAS to UD
+
+## To Do - Segmentation
+* convert segmentation and vocabularies to XYZ
+* train a RDR model
+* convert model into pybo matcher syntax
+
+## To Do - Tagging
+* plug pybo to spacy through the init file
+* train spacy models
+* ...
+
