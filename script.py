@@ -1,12 +1,14 @@
+import os
 import yaml
 import pickle
 
-filepath = './tests/mgd.yml'
+# filepath = './tests/mgd.yml'
+filepath = './rc/mgd-full.yml'
 
-with open(filepath, mode='r', encoding='utf-8') as f:
-    source_file = f.read()
+build = False
 
 def load_in_single_dict(nested_yaml):
+# yaml to python nested dicts
     out = {}
     for entry in yaml.load_all(nested_yaml):
         for k in entry.keys():
@@ -14,42 +16,31 @@ def load_in_single_dict(nested_yaml):
     return out
 
 
-total_dict = load_in_single_dict(source_file)
-# print(yaml.dump(total_dict))
+# only load and pickle if needed
+if build or not os.path.isfile("dict.pickled"):
+    with open(filepath, mode='r', encoding='utf-8') as f:
+        source_file = f.read()
+    full_dict = load_in_single_dict(source_file)
+    # closes the file as soon as load() is executed (see https://stackoverflow.com/a/17985226/6027621)
+    pickle.dump(full_dict, open("dict.pickled", "wb"), -1)
 
-with open('dict.pickled', 'wb') as f:
-    pickle.dump(total_dict, f, protocol=pickle.HIGHEST_PROTOCOL)
+# unpickle
+d = pickle.load(open("dict.pickled", "rb"))
+print(len(d))
 
-with open('dict.pickled', 'rb') as g:
-    unpickled = pickle.load(g, encoding='UTF-8')
-    print(unpickled)
+content = []
+for entry, meanings in d.items():
+    content.append(entry)
 
+with open('entries.txt', mode='w') as f:
+    f.write('\n'.join(content))
 
 # for entry, meanings in d.items():
 #     for pos, acceptions in meanings.items():
 #         for num, acception in acceptions.items():
-#             print(acception['type'])
-#             print(acceptions['definition'])
-
-
-
-
-
-# import yaml
-
-# filepath = './rc/mgd-full.yml'
-# # filepath = './tests/mgd.yml'
-
-# with open(filepath, mode='r', encoding='utf-8') as f:
-#     d = yaml.load(f)
-#     # print(len(d))
-
-# with open('./rc/mgd-lexicon.txt', 'w', encoding='utf-8') as f:
-#     for k, v in d.items():
-#         f.writelines("{} : {}\n".format(k, [*v]))
+#             # print(acception)
+#             print(acception.setdefault('definition', 'example'))
 
 
 # yo = list(filter(lambda x:'རྒྱན་ཚིག' in d.get(x),d))
 # print(yo)
-
-
